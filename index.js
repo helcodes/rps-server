@@ -3,13 +3,14 @@ const app = express()
 const cors = require('cors')
 //const ws = require('ws')
 const SocketIO = require('socket.io')
+const Game = require('./game')
 
 const corsOptions = {
     origin: 'http://localhost:8080'
 }
 //const wsServer = new ws.Server({ noServer: true });
 
-app.use(cors(corsOptions))
+app.use(cors())//corsOptions
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -29,7 +30,7 @@ const io=SocketIO(http, {
     cors: {}
 })
 
-const messages = [];
+/*const messages = [];
 io.on('connection', (socket) => {
     console.log('Got a connection!')
 
@@ -44,8 +45,9 @@ io.on('connection', (socket) => {
         io.emit('serverMessage', message)//send to all clients
     })
     socket.emit('serverMessages', messages)//send to single client
-})
+})*/
 
+let game = new Game(io)
 const PORT = process.env.PORT || 8081
 
 //wsServer.on('connection', socket => {

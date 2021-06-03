@@ -34,7 +34,7 @@ io.on('connection', (socket) => {
     console.log('Got a connection!')
 
     socket.on('message', (arg) => {
-        console.log('Received message: ', arg)
+        console.log('Server received message: ', arg)
         //setTimeout(() => {
         //    socket.emit('serverMessage', 'Hello frm server')//send to 1 client
         //},2000)

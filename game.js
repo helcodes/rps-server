@@ -9,8 +9,9 @@ class Game {
         this.matches = new Set()
 
         this.io.on('connection', (socket) => {
-            
+            console.log("game js - connected")
             socket.on('login', (username) => {
+                console.log("game js - login")
                 if (this.loginPlayer(socket, username)) {
                     socket.emit('userLoggedIn', {
                         username: username,
@@ -67,6 +68,7 @@ class Game {
             const player = this.players.get(username)
 
             if (player.loggedIn()) {
+                console.log("server - logged in")
                 return false
             }
 
